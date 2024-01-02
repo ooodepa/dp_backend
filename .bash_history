@@ -20,6 +20,7 @@ yarn add -D express
 yarn add class-validator
 yarn add class-transformer
 
-
 yarn nest g res rest/api/v2/languages --no-spec
 yarn migration-generate:dev src/migration/DP_CTL_Languages
+
+yarn migration-generate:dev src/migration/DP_CTL_SitemapChangefreq
