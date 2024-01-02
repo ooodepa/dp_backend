@@ -1,0 +1,327 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/api/ping": {
+      "get": {
+        "operationId": "AppController_getHello",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/v2/languages/bulk": {
+      "post": {
+        "operationId": "LanguagesController_createBulk",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBulkLanguageDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "api_v2_languages"
+        ]
+      },
+      "patch": {
+        "operationId": "LanguagesController_updateBulk",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBulkLanguageDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "api_v2_languages"
+        ]
+      }
+    },
+    "/api/v2/languages": {
+      "post": {
+        "operationId": "LanguagesController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateLanguageDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "api_v2_languages"
+        ]
+      },
+      "get": {
+        "operationId": "LanguagesController_findAll",
+        "parameters": [
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "api_v2_languages"
+        ]
+      }
+    },
+    "/api/v2/languages/{id}": {
+      "get": {
+        "operationId": "LanguagesController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "api_v2_languages"
+        ]
+      },
+      "patch": {
+        "operationId": "LanguagesController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateLanguageDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "api_v2_languages"
+        ]
+      },
+      "delete": {
+        "operationId": "LanguagesController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "api_v2_languages"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "REST API документация",
+    "description": "",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "tags": [
+    {
+      "name": "api_v2_languages",
+      "description": "Каталог языков"
+    }
+  ],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "access-token": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http",
+        "name": "JWT",
+        "description": "access token - токен доступа",
+        "in": "header"
+      },
+      "refresh-token": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http",
+        "name": "JWT",
+        "description": "refresh token - токен обновления",
+        "in": "header"
+      }
+    },
+    "schemas": {
+      "LanguageDto": {
+        "type": "object",
+        "properties": {
+          "dp_shortName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "dp_shortName"
+        ]
+      },
+      "CreateBulkLanguageDto": {
+        "type": "object",
+        "properties": {
+          "bulk": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LanguageDto"
+            }
+          }
+        },
+        "required": [
+          "bulk"
+        ]
+      },
+      "CreateLanguageDto": {
+        "type": "object",
+        "properties": {
+          "dp_shortName": {
+            "type": "string"
+          }
+        }
+      },
+      "LanguageWithIdDto": {
+        "type": "object",
+        "properties": {
+          "dp_shortName": {
+            "type": "string"
+          },
+          "dp_id": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "dp_id"
+        ]
+      },
+      "UpdateBulkLanguageDto": {
+        "type": "object",
+        "properties": {
+          "bulk": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LanguageWithIdDto"
+            }
+          }
+        },
+        "required": [
+          "bulk"
+        ]
+      },
+      "UpdateLanguageDto": {
+        "type": "object",
+        "properties": {
+          "dp_shortName": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  postgresql:
+    image: postgres:10.23-alpine
+    container_name: dp-db-postgres-10-23
+    restart: always
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+    ports:
+      - "11113:5432"
+    volumes:
+      - ./docker/postgres/var/lib/postgresql/data:/var/lib/postgresql/data
+    networks:
+      - pg-network
+
+  adminer:
+    image: adminer
+    container_name: dp-db-adminer
+    restart: always
+    ports:
+      - "11112:8080"
+    networks:
+      - pg-network
+
+networks:
+  pg-network:
+    driver: bridge
